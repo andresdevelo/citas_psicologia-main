@@ -1,0 +1,120 @@
+2025-09-16 17:02:14 - Script ejecutado. Datos recibidos: nombre=gfdd, programa=2, rol=EMPLEADO, nombreRemitido=gdf, rolRemitido=EMPLEADO, semestre=3, horario=Mañana, motivo=fdgfdg, telefonoRemitido=45435, telefonoRemite=4535
+2025-09-16 17:04:27 - Script ejecutado. Datos recibidos: nombre=tyyyyyyyyy, programa=1, rol=EMPLEADO, nombreRemitido=tyrrrrrrr, rolRemitido=ESTUDIANTE, semestre=1, horario=Mañana, motivo=tyrryt, telefonoRemitido=567777777777, telefonoRemite=76555555555555
+2025-09-16 17:06:50 - Script ejecutado. _POST: Array
+(
+    [nombre] => andru
+    [rol] => ESTUDIANTE
+    [nombreRemitido] => peres
+    [programa] => 2
+    [horario] => Tarde
+    [rolRemitido] => EMPLEADO
+    [semestre] => 1
+    [motivo] => sdadad
+    [telefonoRemitido] => 54335435
+    [telefonoRemite] => 54543543
+)
+
+2025-09-16 17:10:35 - Script ejecutado. _POST: Array
+(
+    [nombre] => ewrwr
+    [rol] => ESTUDIANTE
+    [nombreRemitido] => erwrwr
+    [programa] => 2
+    [horario] => Mañana
+    [rolRemitido] => EMPLEADO
+    [semestre] => 3
+    [motivo] => rewrewrw
+    [telefonoRemitido] => 56354321
+    [telefonoRemite] => 533135
+)
+
+2025-09-16 17:13:16 - Script ejecutado. _POST: Array
+(
+    [nombre] => dfsfsf
+    [rol] => ESTUDIANTE
+    [nombreRemitido] => fdsfdsf
+    [programa] => 3
+    [horario] => Tarde
+    [rolRemitido] => ESTUDIANTE
+    [semestre] => 2
+    [motivo] => fdsffsdfsfs
+    [telefonoRemitido] => 4354353
+    [telefonoRemite] => 543553
+)
+
+2025-09-16 17:15:16 - Script ejecutado. _POST: Array
+(
+    [nombre] => sdaaaaaaaa
+    [rol] => ESTUDIANTE
+    [nombreRemitido] => sdadadsad
+    [programa] => 3
+    [horario] => Mañana
+    [rolRemitido] => ESTUDIANTE
+    [semestre] => 2
+    [motivo] => dsadddddd
+    [telefonoRemitido] => 4324324
+    [telefonoRemite] => 342342
+)
+
+2025-09-16 17:15:32 - Script ejecutado. _POST: Array
+(
+    [nombre] => sdad
+    [rol] => EMPLEADO
+    [nombreRemitido] => dddddddd
+    [programa] => 2
+    [horario] => Mañana
+    [rolRemitido] => ESTUDIANTE
+    [semestre] => 1
+    [motivo] => sdddd
+    [telefonoRemitido] => 342
+    [telefonoRemite] => 342
+)
+
+2025-09-16 17:16:41 - Script ejecutado. _POST: Array
+(
+    [nombre] => dfsssssss
+    [rol] => ESTUDIANTE
+    [nombreRemitido] => fdsssssssss
+    [programa] => 1
+    [horario] => Mañana
+    [rolRemitido] => DIRECTIVO
+    [semestre] => 3
+    [motivo] => dfssssssssss
+    [telefonoRemitido] => 54333333
+    [telefonoRemite] => 45333333
+)
+
+2025-09-16 17:17:59 - Script ejecutado. _POST: Array
+(
+    [nombre] => dfsff
+    [rol] => ESTUDIANTE
+    [nombreRemitido] => fdsfsf
+    [programa] => 1
+    [horario] => Mañana
+    [rolRemitido] => DIRECTIVO
+    [semestre] => 1
+    [motivo] => dfsssssssssss
+    [telefonoRemitido] => 54333333333
+    [telefonoRemite] => 333333333333333
+)
+
+[2025-09-18 18:00:30] Error al enviar correo: HTTP 400 - Respuesta: {"code":"invalid_parameter","message":"email is not valid in to"}
+
+[2025-09-18 18:06:09] Error al enviar correo: HTTP 400 - Respuesta: {"code":"missing_parameter","message":"subject is required"}
+
+[2025-09-18 18:06:22] Error al enviar correo: HTTP 400 - Respuesta: {"code":"missing_parameter","message":"subject is required"}
+
+[2025-09-18 18:06:38] Error al enviar correo: HTTP 400 - Respuesta: {"code":"missing_parameter","message":"subject is required"}
+
+[2025-09-18 18:27:11] Error al enviar correo: HTTP 401 - Respuesta: {"message":"Key not found","code":"unauthorized"}
+
+[2025-09-18 18:36:12] Error al enviar correo: HTTP 401 - Respuesta: {"message":"Key not found","code":"unauthorized"}
+
+[2025-09-18 18:52:11] Error al enviar correo: HTTP 401 - Respuesta: {"message":"Key not found","code":"unauthorized"}
+
+[2025-09-18 22:37:04] Error al enviar correo: HTTP 401 - Respuesta: {"message":"Key not found","code":"unauthorized"}
+
+[2025-09-18 22:46:12] Error al enviar correo: HTTP 401 - Respuesta: {"message":"Key not found","code":"unauthorized"}
+
+[2025-09-18 23:03:41] Error al enviar correo: HTTP 401 - Respuesta: {"message":"Key not found","code":"unauthorized"}
+

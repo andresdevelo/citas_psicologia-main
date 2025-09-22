@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formato de Remisión Psicosocial</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+  <div class="max-w-4xl mx-auto bg-white p-8 rounded shadow">
+    <h1 class="text-2xl font-bold text-center mb-6 uppercase">Formato de Remisión Atención Psicosocial</h1>
+
+    <!-- Contenedor para mostrar alertas -->
+    <div id="alerta" class="hidden p-3 mb-4 rounded text-center font-semibold"></div>
+
+    <form id="remisionForm" class="space-y-6">
+      <!-- Nombre y Rol de quien remite -->
+      <div class="flex flex-col md:flex-row md:space-x-4">
+        <div class="w-full md:w-1/2">
+          <label for="nombre" class="block text-sm font-medium text-gray-700">
+            Nombre de quien remite <span class="text-red-500">*</span>
+          </label>
+          <input type="text" id="nombre" name="nombre" required
+            class="mt-1 w-full border border-gray-300 rounded px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        </div>
+        <div class="w-full md:w-1/2 mt-4 md:mt-0">
+          <label for="rol" class="block text-sm font-medium text-gray-700">
+            Rol de quien remite <span class="text-red-500">*</span>
+          </label>
+          <select id="rol" name="rol" required
+            class="mt-1 w-full border border-gray-300 rounded px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <option value="" disabled selected>Selecciona una opción</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Nombre y Rol del remitido -->
+      <div class="flex flex-col md:flex-row md:space-x-4">
+        <div class="w-full md:w-1/2">
+          <label for="nombreRemitido" class="block text-sm font-medium text-gray-700">
+            Nombre del remitido <span class="text-red-500">*</span>
+          </label>
+          <input type="text" id="nombreRemitido" name="nombreRemitido" required
+            class="mt-1 w-full border border-gray-300 rounded px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400" />
+          <label for="programa" class="block text-sm font-medium text-gray-700 mt-4">
+            Selecciona un programa <span class="text-red-500">*</span>
+          </label>
+          <select id="programa" name="programa" required
+            class="mt-1 w-full border border-gray-300 rounded px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <option value="" disabled selected>Selecciona una opcion</option>
+          </select>
+
+          
+          <label for="horario" class="block text-sm font-medium text-gray-700 mt-4">
+            Horario <span class="text-red-500">*</span>
+          </label>
+          <select id="horario" name="horario" required
+            class="mt-1 w-full border border-gray-300 rounded px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <option value="" disabled selected>Selecciona el horario</option>
+          </select>
+        </div>
+        
+        <div class="w-full md:w-1/2 mt-4 md:mt-0">
+          <label for="rolRemitido" class="block text-sm font-medium text-gray-700">
+            Rol del remitido <span class="text-red-500">*</span>
+          </label>
+          <select id="rolRemitido" name="rolRemitido" required
+            class="mt-1 w-full border border-gray-300 rounded px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <option value="" disabled selected>Selecciona una opción</option>
+          </select>
+
+          <label for="semestre" class="block text-sm font-medium text-gray-700 mt-4">
+            Semestre <span class="text-red-500">*</span>
+          </label>
+          <select id="semestre" name="semestre" required
+            class="mt-1 w-full border border-gray-300 rounded px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <option value="" disabled selected>Selecciona el semestre</option>
+          </select>
+          
+<label for="correo_remitido" class="block text-sm font-medium text-gray-700 mt-4">
+  Correo del remitido <span class="text-red-500">*</span>
+</label>
+<input 
+  type="email" 
+  id="correo_remitido" 
+  name="correo_remitido" 
+  placeholder="ejemplo@correo.com"
+  required
+  pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+  title="Por favor, introduce un correo válido (ejemplo: usuario@dominio.com)"
+  class="mt-1 w-full border border-gray-300 rounded px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 invalid:border-red-500"
+  oninvalid="this.setCustomValidity('Por favor, introduce un correo válido (ejemplo: usuario@dominio.com)')"
+  oninput="this.setCustomValidity('')"
+/>
+<p id="correo_remitido_error" class="text-red-600 text-xs mt-1 hidden">Por favor, introduce un correo válido.</p>
+        </div>
+      </div>
+
+      <!-- Motivo -->
+      <div>
+        <label for="motivo" class="block text-sm font-medium text-gray-700">
+          Motivo de remisión
+          <span class="block text-xs text-gray-500">(Describa brevemente la razón por la que cree que el remitido merece atención del área psicosocial)</span>
+        </label>
+        <textarea id="motivo" name="motivo" rows="4"
+          class="mt-1 w-full border border-gray-300 rounded px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"></textarea>
+      </div>
+
+      <!-- Teléfonos -->
+      <div class="flex flex-col md:flex-row md:space-x-4">
+        <div class="w-full md:w-1/2">
+          <label for="telefonoRemitido" class="block text-sm font-medium text-gray-700">
+            Teléfono del remitido <span class="text-red-500">*</span>
+          </label>
+          <input type="number" id="telefonoRemitido" name="telefonoRemitido" required
+            class="mt-1 w-full border border-gray-300 rounded px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        </div>
+        <div class="w-full md:w-1/2 mt-4 md:mt-0">
+          <label for="telefonoRemite" class="block text-sm font-medium text-gray-700">
+            Teléfono de quien remite <span class="text-red-500">*</span>
+          </label>
+          <input type="number" id="telefonoRemite" name="telefonoRemite" required
+            class="mt-1 w-full border border-gray-300 rounded px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        </div>
+      </div>
+
+      <!-- Botón -->
+      <div>
+        <button type="submit"
+          class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Enviar</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
