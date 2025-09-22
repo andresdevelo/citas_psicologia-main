@@ -1,4 +1,3 @@
-
 <?php
 // Configuración de conexión
 $servername = "localhost";
@@ -53,6 +52,9 @@ if (!preg_match('/^\d{7,15}$/', $datos['telefonoRemitido']) || !preg_match('/^\d
     exit("Teléfonos inválidos.");
 }
 
+// Normalizar teléfono del remitido con +57
+$telefonoWhatsApp = '+57' . $datos['telefonoRemitido'];
+
 // Insertar datos en la tabla
 $sql = "INSERT INTO estudiantes 
         (nombre, programa, semestre, horario, fecha_registro, rol, nombre_remitido, rol_remitido, motivo, telefono_remitido, telefono_remite, correo_remitido) 
@@ -80,49 +82,58 @@ $stmt->bind_param(
     $datos['correo_remitido']
 );
 
-// Función para enviar correo
-function enviarCorreo($datos) {
-    $to_email = 'defandres438@gmail.com';
-    $to_name = 'Def Andres';
-    $subject = 'Nueva remisión psicosocial';
-        $content = '
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border:1px solid #e2e8f0; border-radius:8px; box-shadow:0 2px 8px #e2e8f0; padding:32px; background:#f9fafb;">
-            <h2 style="color:#2563eb; text-align:center; margin-bottom:24px;">Nueva Remisión Psicosocial</h2>
-            <table style="width:100%; border-collapse:collapse; margin-bottom:24px;">
-                <tr><td style="font-weight:bold; padding:6px 0;">Nombre de quien remite:</td><td>' . $datos['nombre'] . '</td></tr>
-                <tr><td style="font-weight:bold; padding:6px 0;">Rol de quien remite:</td><td>' . $datos['rol'] . '</td></tr>
-                <tr><td style="font-weight:bold; padding:6px 0;">Nombre del remitido:</td><td>' . $datos['nombreRemitido'] . '</td></tr>
-                <tr><td style="font-weight:bold; padding:6px 0;">Rol del remitido:</td><td>' . $datos['rolRemitido'] . '</td></tr>
-                <tr><td style="font-weight:bold; padding:6px 0;">Programa:</td><td>' . $datos['programa'] . '</td></tr>
-                <tr><td style="font-weight:bold; padding:6px 0;">Semestre:</td><td>' . $datos['semestre'] . '</td></tr>
-                <tr><td style="font-weight:bold; padding:6px 0;">Horario:</td><td>' . $datos['horario'] . '</td></tr>
-                <tr><td style="font-weight:bold; padding:6px 0;">Motivo de remisión:</td><td>' . nl2br($datos['motivo']) . '</td></tr>
-                <tr><td style="font-weight:bold; padding:6px 0;">Teléfono de quien remite:</td><td>' . $datos['telefonoRemite'] . '</td></tr>
-                <tr><td style="font-weight:bold; padding:6px 0;">Teléfono del remitido:</td><td>' . $datos['telefonoRemitido'] . '</td></tr>
-                <tr><td style="font-weight:bold; padding:6px 0;">Correo del remitido:</td><td>' . $datos['correo_remitido'] . '</td></tr>
-            </table>
-            <div style="text-align:center; margin-top:32px;">
-                <a href="mailto:' . $datos['correo_remitido'] . '?subject=Respuesta a remisión psicosocial" style="display:inline-block; background:#2563eb; color:#fff; padding:12px 28px; border-radius:6px; text-decoration:none; font-weight:bold; font-size:16px;">Responder al remitido</a>
-            </div>
-            <p style="color:#64748b; font-size:13px; text-align:center; margin-top:32px;">Este mensaje fue generado automáticamente por el sistema de remisiones psicosociales.</p>
-        </div>';
+// Función para enviar correo vía API Brevo
+function enviarCorreo($datos, $telefonoWhatsApp) {
+    $to_email = 'desarrollohumano@elyonyireh.edu.co';
+    $to_name  = 'psicosocial';
+    $subject  = 'Nueva remisión psicosocial';
 
-    $apiKey = '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';
+   $content = '
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border:1px solid #e2e8f0; border-radius:8px; box-shadow:0 2px 8px #e2e8f0; padding:32px; background:#f9fafb;">
+        <h2 style="color:#4A90E2; text-align:center; margin-bottom:24px;">Nueva Remisión Psicosocial</h2>
+        <table style="width:100%; border-collapse:collapse; margin-bottom:24px;">
+            <tr><td><b>Nombre de quien remite:</b></td><td>' . $datos['nombre'] . '</td></tr>
+            <tr><td><b>Rol de quien remite:</b></td><td>' . $datos['rol'] . '</td></tr>
+            <tr><td><b>Nombre del remitido:</b></td><td>' . $datos['nombreRemitido'] . '</td></tr>
+            <tr><td><b>Rol del remitido:</b></td><td>' . $datos['rolRemitido'] . '</td></tr>
+            <tr><td><b>Programa:</b></td><td>' . $datos['programa'] . '</td></tr>
+            <tr><td><b>Semestre:</b></td><td>' . $datos['semestre'] . '</td></tr>
+            <tr><td><b>Horario:</b></td><td>' . $datos['horario'] . '</td></tr>
+            <tr><td><b>Motivo de remisión:</b></td><td>' . nl2br($datos['motivo']) . '</td></tr>
+            <tr><td><b>Teléfono de quien remite:</b></td><td>' . $datos['telefonoRemite'] . '</td></tr>
+            <tr><td><b>Teléfono del remitido:</b></td><td>' . $datos['telefonoRemitido'] . '</td></tr>
+            <tr><td><b>Correo del remitido:</b></td><td>' . $datos['correo_remitido'] . '</td></tr>
+        </table>
+
+        <!-- Botones Responsivos con colores de psicología -->
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:15px; margin-top:32px;">
+            <a href="mailto:' . $datos['correo_remitido'] . '?subject=Respuesta a remisión psicosocial" 
+               style="flex:1 1 240px; max-width:100%; background:#4A90E2; color:#fff; padding:14px 20px; border-radius:6px; text-decoration:none; font-weight:bold; text-align:center; box-sizing:border-box;">
+               📧 Responder por Correo
+            </a>
+            <br>
+            <a href="https://wa.me/' . ltrim($telefonoWhatsApp, '+') . '" 
+               style="flex:1 1 240px; max-width:100%; background:#50C878; color:#fff; padding:14px 20px; border-radius:6px; text-decoration:none; font-weight:bold; text-align:center; box-sizing:border-box;">
+               💬 Responder por WhatsApp
+            </a>
+           
+        </div>
+
+        <p style="color:#64748b; font-size:13px; text-align:center; margin-top:32px;">
+            Este mensaje fue generado automáticamente por el sistema de remisiones psicosociales.
+        </p>
+    </div>';
+
+
+    $apiKey = '';
 
     $data = [
         'sender' => [
-            'name' => 'Remisión Psicosocial',
-            'email' => 'sayaskeiner75@gmail.com'
+            'name'  => 'Remisión Psicosocial',
+            'email' => 'automaticoscorreos21@gmail.com'
         ],
         'to' => [
-            [
-                'email' => $to_email,
-                'name' => $to_name
-            ],
-            [
-                'email' => 'defandres438@gmail.com',
-                'name' => 'Def Andres'
-            ]
+            ['email' => $to_email, 'name' => $to_name]
         ],
         'subject' => $subject,
         'htmlContent' => '<html><body>' . $content . '</body></html>'
@@ -149,7 +160,7 @@ function enviarCorreo($datos) {
 
 // Ejecutar y responder
 if ($stmt->execute()) {
-    enviarCorreo($datos);
+    enviarCorreo($datos, $telefonoWhatsApp);
     echo "OK";
 } else {
     log_error("Error al insertar: " . $stmt->error);
@@ -159,5 +170,4 @@ if ($stmt->execute()) {
 
 $stmt->close();
 $conn->close();
-
 ?>
